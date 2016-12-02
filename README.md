@@ -61,7 +61,7 @@ data and then display where people are on a map in the search results.
 
 ## Try It Out
 
-<server URL here>
+[http://199.21.114.38:3000/](http://199.21.114.38:3000/)
 
 ## Vagrant Instructions
 
