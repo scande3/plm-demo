@@ -1,0 +1,17 @@
+default: &default
+  ldf_server: http://localhost:3001/
+  app_type: curation_concerns
+  form_fields:
+   -
+    id: condition_term_lookup
+    adapter: mesh
+    solr_field: preferred_condition_labels_ssim
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default

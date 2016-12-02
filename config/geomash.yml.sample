@@ -1,0 +1,48 @@
+development:
+  tgn_enabled: true
+  geonames_username: <username>
+  #NOTE: Mapquest is super unreliable on its matches...
+  mapquest_key: <mapquest_key>
+  #NOTE: Bing also fairly unreliable but mostly works...
+  bing_key: <bing_key>
+  #NOTE: Optional Google API key
+  google_key: <google_key>
+  #NOTE: Optional Google Maps for Work Information
+  google_premier:
+    - key
+    - client
+    - channel
+  timeout: 7
+  parser_cache_enabled: false #See Readme before enabling this
+test: &TEST_
+  tgn_enabled: true
+  geonames_username: <username>
+  #NOTE: Mapquest is super unreliable on its matches...
+  mapquest_key: <mapquest_key>
+  #NOTE: Bing also fairly unreliable but mostly works...
+  bing_key: <bing_key>
+  #NOTE: Optional Google API key
+  google_key: <google_key>
+  #NOTE: Optional Google Maps for Work Information
+  google_premier:
+    - key
+    - client
+    - channel
+  timeout: 7
+  parser_cache_enabled: false #See Readme before enabling this
+production:
+  tgn_enabled: true
+  geonames_username: <username>
+  #NOTE: Mapquest is super unreliable on its matches...
+  mapquest_key: <mapquest_key>
+  #NOTE: Bing also fairly unreliable but mostly works...
+  bing_key: <bing_key>
+  #NOTE: Optional Google API key
+  google_key: <google_key>
+  #NOTE: Optional Google Maps for Work Information
+  google_premier:
+    - key
+    - client
+    - channel
+  timeout: 7
+  parser_cache_enabled: false #See Readme before enabling this

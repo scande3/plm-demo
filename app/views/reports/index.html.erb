@@ -1,0 +1,30 @@
+<% @page_title = "News -  #{application_name}" %>
+<style type="text/css">
+  td {
+    padding:10px;
+  }
+</style>
+<div id="static_holder" class="container-fluid">
+  <div class="row">
+
+    <table width="1000" border="2">
+      <tr>
+        <th width="50%">Condition</th>
+        <th>Count</th>
+      </tr>
+
+   <% @reported_conditions.each do |key, value| %>
+          <tr>
+            <td><%=key%></td>
+            <td><%=value%></td>
+          </tr>
+   <% end %>
+          </table>
+
+  </div>
+
+
+  </div>
+</div>
+
+

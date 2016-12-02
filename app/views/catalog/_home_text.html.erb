@@ -1,0 +1,86 @@
+
+  <div class="page-header row">
+    <h2 class="col-md-8 page-heading">Patients Like Me Code Review Demo</h2>
+
+    <ul class="nav nav-pills col-md-4">
+      <li><a href="https://github.com/scande3/plm-demo">Github</a></li>
+    </ul>
+
+  </div>
+
+  <div id="getting-started">
+    <h3 class="section-heading">Here’s how to get started:</h3>
+
+    <ol>
+      <li>Try to sign up for an account. You will notice the ability to add a geographic string and to look up your
+        medical conditions.
+        <ol>
+          <li>This interface is simply for demonstration purposes. The library community has been moving away from
+          autocomplete fields since they simply are not that useable. However, the interface being shown off would need
+          to be adapted to a less technical audience.</li>
+          <li>These conditions come from MeSH loaded into a blazegraph instance. Learning about this linked data
+          vocabulary took longer than I had anticipated so it isn't that optimized.</li>
+        </ol>
+      </li>
+      <li>
+        Once you have some accounts, there are a few things to notice:
+        <ol>
+          <li>You can view users on a map! There are icons in the upper right of your search that allow for this. There are
+          better ways to parse geographic data than with Geomash. However, as I coded that, I wanted to show it off and it
+          is useful in cases that one is harvesting from places that only contains string names of places.</li>
+          <li>As the hierarchy exists, there is a set of facet options that keep those that still have a condition but picked
+          a more specific version of it than others.</li>
+          <li>Alternative labels and hierarchy also plays a limited role in search results (not optimized).</li>
+        </ol>
+      </li>
+      <li>
+        Finally, one has more accurate reporting data. To access this, see: <a href="reports">the barebones reports section</a>.
+        <ol>
+          <li>As hierarchy exists, one could go both up and down a report chain as needed. However, I didn't have time to
+          implement even a demonstration of this.</li>
+        </ol>
+      </li>
+      <li>
+        Used Library References
+        <ol>
+          <li>As hierarchy exists, one could go both up and down a report chain as needed. However, I didn't have time to
+            implement even a demonstration of this.</li>
+        </ol>
+      </li>
+      </ol>
+
+    <h3 class="section-heading">Used Code References That I've Contributed To:</h3>
+    <ul>
+      <li>
+        <a href="https://github.com/ActiveTriples/linked-data-fragments">Linked Data Fragments</a>
+        <ol>
+          <li>The idea with this codebase is that Linked Data requires a caching layer like Marmotta, Blazegraph, Apache Stanbol, etc.
+          While Blazegraph is emerging as a winner, each institution picks their own stack, and a lack of standard interface has made
+          code sharing difficult. Additionally, by abstracting out this layer, one can switch the technology stack being used with
+          far less effort.</li>
+          <li>Sadly, development has been slow on this code. While resolving subjects in a triple are easy, getting suggestions isn't
+          supported yet so I did often have to hit Blazegraph's SPARQL yet. Development of this code is set to pick up as the
+          Applied Linked Data group from the library world has become more active again: <a href="https://wiki.duraspace.org/display/hydra/Applied+Linked+Data+Working+Group">https://wiki.duraspace.org/display/hydra/Applied+Linked+Data+Working+Group</a></li>
+          <li>Sample commit: <a href="https://github.com/ActiveTriples/linked-data-fragments/pull/18">https://github.com/ActiveTriples/linked-data-fragments/pull/18</a></li>
+        </ol>
+      </li>
+      <li>
+        <a href="https://github.com/projecthydra-labs/geomash">Geomash</a>
+        <ol>
+          <li>Written initially to support the geographic functionality of Digital Commonwealth, this codebase is on its last legs.
+          For the past year, it has just been "keep it working" mode as I'd like to redo it. Especially some version that is hosted
+          and can learn from the data hitting it rather than it just being a distributed gem.</li>
+          <li>Sample commit: All except for one albeit the most recent ones are just quick hacks to hotfix more systemic issues.</li>
+        </ol>
+      </li>
+      <li>
+        <a href="https://github.com/boston-library/mei">Mei (short for Metadata Enrichment Interface)</a>
+        <ol>
+          <li>Designed to be the first selling point of Linked Data Fragments, it is to replace autocomplete for more complex fields.</li>
+          <li>The initial version mostly worked with the Library of Congress Linked Data endpoint. I just hacked out some
+            of the "library world" dependencies like active-fedora and added in MeSH for this. Very much experimentation
+            and horribly coded at the moment.</li>
+        </ol>
+      </li>
+    </ul>
+  </div>
