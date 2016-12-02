@@ -80,7 +80,6 @@ git clone https://github.com/ActiveTriples/linked-data-fragments.git
 cd linked-data-fragments
 cp config/ldf.yml.sample_blazegraph config/ldf.yml
 bundle install --quiet
-rails s -p 3001 &
 
 echo "Generating plm-demo ${HOME}/plm-demo"
 cd
@@ -88,7 +87,7 @@ git clone https://github.com/scande3/plm-demo.git
 cd plm-demo
 cp config/database.yml.sample config/database.yml
 cp config/blacklight.yml.sample config/blacklight.yml
-cp config/secret.yml.sample config/secret.yml
+cp config/secrets.yml.sample config/secrets.yml
 cp config/geomash.yml.sample config/geomash.yml
 bundle install --quiet
 rake db:migrate
@@ -98,6 +97,16 @@ rake ldfjetty:start
 DOWNLOAD_URL="ftp://nlmpubs.nlm.nih.gov/online/mesh/2017/mesh2017.nt"
 curl $DOWNLOAD_URL -o mesh2017.nt
 curl -H 'Content-Type: text/turtle' --upload-file $DOWNLOAD_DIR/mesh2017.nt -X POST "http://localhost:8988/blazegraph/sparql?context-uri=ftp://nlmpubs.nlm.nih.gov/online/mesh/2017/mesh2017.nt"
+
+In three seperate command prompt windows. Then do one of the following in each of them in order (waiting for the previous to finish):
+cd plm-demo
+solr_wrapper -p 8983
+
+cd plm-demo`
+rails s -p 3000
+
+cd linked-data-fragments
+rails s -p 3001
 
 ```
 
