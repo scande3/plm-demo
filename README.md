@@ -6,11 +6,13 @@
 
 #### Background
 
-As I tried out PatientsLikeMe, I noticed something a bit unusual. For example, 930 users suffer from the condition of
-"heart attack" (Myocardial Infarction). Then we go one level broader and it seems like 46 people suffer from 
+After my initial code screen, I decided to give PatientsLikeMe a detailed try. As I delved into it, I noticed one aspect it did differently than I would intrinsically expect. To illustrate, 930 users suffer from the condition of
+"heart attack" (Myocardial Infarction). If we go one level broader, it seems like 46 people suffer from 
 "Myocardial Ischemia". . . but what happened to those 930 other users who suffer from a specific version of that
-condition? Going one level deeper than the initial heart attack shows that the 39 that specified the type of heart attach as
-"Non-ST Elevated Myocardial Infarction" are lacking from the "heart attack" report.
+condition? Going one level deeper than the initial starting level shows that the 39 that specified the type of heart attack as
+"Non-ST Elevated Myocardial Infarction" are lacking from the "heart attack" report. This seems odd as we wouldn't not count those
+who answered "Boston" as their location when looking at statistics for "Massachusetts". Perhaps I am wrong in this assumption but
+it is one aspect I decided to focus on for this code sample.
 
 These reports are the following (from most specific to more general):
 1. [https://www.patientslikeme.com/conditions/522-non-st-elevation-myocardial-infarction/overview](https://www.patientslikeme.com/conditions/522-non-st-elevation-myocardial-infarction/overview)
@@ -20,15 +22,14 @@ These reports are the following (from most specific to more general):
 3. [https://www.patientslikeme.com/conditions/1495-myocardial-ischemia/overview](https://www.patientslikeme.com/conditions/1495-myocardial-ischemia/overview)
 
 
-While the knowledge as to the diagnosis level people reported is important, I'd say that leaving out more specific reports
-of broader concepts is overall inaccurate. Trying out other means, it does seem the site is completely unaware of medical
+Trying out other aspects of the site beyond the reports, it does seem the site is completely unaware of medical
 hierarchy. Furthermore, it even seems to have trouble with alternative labels at times, as doing searches for the scientific
 term for "heart attack" of "Myocardial Infarction" will give different reasults in the general search.
 
 #### My Implementation
 
-I've done a rough implementation of a system that is aware of the medical hiearchy provided by MeSH. It is solely a proof of
-concept as to how it might be done.
+I've done a rough implementation of a system that is aware of the medical hiearchy provided by MeSH in the demo. It is solely a proof of
+concept as to how it might be done and a comparison look at the difference.
 
 ### Condition Entry
 
@@ -48,15 +49,16 @@ Essentially that for complex datasets, type-aheads are just too limiting. In thi
 that broader and narrower context along with the alternative labels. Beyond the clarity on what a term means, it can lead
 a user to make more specific selections as they see what narrower options of their condition are available.
 
-Unfortunately, beyond being a bit rough, the interface is designed for use by staff over the general public. It
-would take a redesign to make it less imposing and more clear on its operation. Just a proof of concept of the idea.
+Unfortunately, beyond being a bit rough, the interface is designed for use by staff rather than the general public. It does
+need some UI work to be adapted to a form that would require less familiarity with the system.
 
 ### Geographic Parsing
 
 #### My Implementation
 
 Just as it was the easiest to show off, quick usage of a ruby gem I had developed to parse strings for geographic
-data and then display where people are on a map in the search results.
+data and then display where people are on a map in the search results. This allows one to potentially visualize where
+certain conditions are centered (after having already faceted on a condition). 
 
 
 ## Try It Out
@@ -120,7 +122,7 @@ rails s -p 3001
      far less effort.
      
    * Sadly, development has been slow on this code. While resolving subjects in a triple are easy, getting suggestions isn't
-     supported yet so I did often have to hit Blazegraph's SPARQL yet. 
+     supported yet so I did sometimes have to hit Blazegraph's SPARQL endpoint yet. 
      
    * Sample commit: [https://github.com/ActiveTriples/linked-data-fragments/pull/18](https://github.com/ActiveTriples/linked-data-fragments/pull/18)
 
@@ -129,7 +131,7 @@ rails s -p 3001
        For the past year, it has just been "keep it working" mode as I'd like to redo it. Especially some version that is hosted
        and can learn from the data hitting it rather than it just being a distributed gem.
        
-     * Sample commit: All except for one albeit the most recent ones are just quick hacks to hotfix more systemic issues.
+     * Sample commit: All except for one were done by myself. The most recent commits are focused on hotfixes rather than more sustainable solutions.
        
 2. [https://github.com/boston-library/mei](Mei) (short for Metadata Enrichment Interface)
      * Designed to be the first selling point of Linked Data Fragments, it is to replace autocomplete for more complex fields.
