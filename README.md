@@ -62,6 +62,7 @@ data and then display where people are on a map in the search results.
 ## Try It Out
 
 [http://199.21.114.38](http://199.21.114.38)
+
 Note: The server it is running on is fairly bad and small queries to the Metadata Enrichment Interface can take up to
 60 seconds.
 
