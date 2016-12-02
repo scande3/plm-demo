@@ -80,6 +80,12 @@
           <li>The initial version mostly worked with the Library of Congress Linked Data endpoint. I just hacked out some
             of the "library world" dependencies like active-fedora and added in MeSH for this. Very much experimentation
             and horribly coded at the moment.</li>
+          <li>The most relevant parts for the demo are:
+            <ul>
+            <li>Parser: <a herf="https://github.com/boston-library/mei/blob/mesh_and_dependency_cleanup/lib/mei/mesh.rb">https://github.com/boston-library/mei/blob/mesh_and_dependency_cleanup/lib/mei/mesh.rb)</a></li>
+            <li>Input form pull of the label for edits (only uris are stored in the DB): <a herf="https://github.com/boston-library/mei/blob/mesh_and_dependency_cleanup/app/inputs/mesh_lookup_input.rb">https://github.com/boston-library/mei/blob/mesh_and_dependency_cleanup/app/inputs/mesh_lookup_input.rb)</a></li>
+            </ul>
+          </li>
         </ol>
       </li>
     </ul>

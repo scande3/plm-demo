@@ -126,8 +126,12 @@ curl -H 'Content-Type: text/turtle' --upload-file $DOWNLOAD_DIR/mesh2017.nt -X P
      * Designed to be the first selling point of Linked Data Fragments, it is to replace autocomplete for more complex fields.
        
      * The initial version mostly worked with the Library of Congress Linked Data endpoint. I just hacked out some 
-        of the "library world" dependencies like active-fedora and added in MeSH for this. Very much experimentation 
-        and horribly coded at the moment.
+       of the "library world" dependencies like active-fedora and added in MeSH for this. Very much experimentation 
+       and horribly coded at the moment in the mesh_and_dependency_cleanup branch.
+
+     * The most relevant parts for the demo are:
+       Parser: [https://github.com/boston-library/mei/blob/mesh_and_dependency_cleanup/lib/mei/mesh.rb](https://github.com/boston-library/mei/blob/mesh_and_dependency_cleanup/lib/mei/mesh.rb)
+       Input form pull of the label for edits (only uris are stored in the DB): [https://github.com/boston-library/mei/blob/mesh_and_dependency_cleanup/app/inputs/mesh_lookup_input.rb](https://github.com/boston-library/mei/blob/mesh_and_dependency_cleanup/app/inputs/mesh_lookup_input.rb)
  
 ## Final Mentions
 
