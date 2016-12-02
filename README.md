@@ -64,7 +64,8 @@ data and then display where people are on a map in the search results.
 [http://199.21.114.38](http://199.21.114.38)
 
 Note: The server it is running on is fairly bad and small queries to the Metadata Enrichment Interface can take up to
-60 seconds.
+60 seconds. While still an unwieldly 10 to 15 seconds in a better setting, it could be improved with access to your
+currated vocabulary list and the addition of a caching layer for common searches.
 
 ## Vagrant Instructions
 
@@ -77,23 +78,22 @@ echo "Generating Linked Data Fragments ${HOME}/linkeddatafragments"
 cd
 git clone https://github.com/ActiveTriples/linked-data-fragments.git
 cd linked-data-fragments
+cp config/ldf.yml.sample_blazegraph config/ldf.yml
 bundle install --quiet
-rails s -p 3001
+rails s -p 3001 &
 
 echo "Generating plm-demo ${HOME}/plm-demo"
 cd
 git clone https://github.com/scande3/plm-demo.git
 cd plm-demo
-bundle install --quiet
-rake db:migrate
-rake ldfjetty:install
-rake ldfjetty:start
-
 cp config/database.yml.sample config/database.yml
 cp config/blacklight.yml.sample config/blacklight.yml
 cp config/secret.yml.sample config/secret.yml
 cp config/geomash.yml.sample config/geomash.yml
-rails s -p 3000 -b 0.0.0.0
+bundle install --quiet
+rake db:migrate
+rake ldfjetty:install
+rake ldfjetty:start
 
 DOWNLOAD_URL="ftp://nlmpubs.nlm.nih.gov/online/mesh/2017/mesh2017.nt"
 curl $DOWNLOAD_URL -o mesh2017.nt
