@@ -61,15 +61,45 @@ data and then display where people are on a map in the search results.
 
 ## Try It Out
 
-[http://199.21.114.38:3000/](http://199.21.114.38:3000/)
+[http://199.21.114.38](http://199.21.114.38)
+Note: The server it is running on is fairly bad and small queries to the Metadata Enrichment Interface can take up to
+60 seconds.
 
 ## Vagrant Instructions
 
-Coming a couple of hours.
+[https://github.com/scande3/plm-vagrant](https://github.com/scande3/plm-vagrant)
 
-## Installation Instructions
+## Installation Instructions (uses ports 3000, 3001, 8983, and 8988)
 
-Coming a couple of hours.
+```
+echo "Generating Linked Data Fragments ${HOME}/linkeddatafragments"
+cd
+git clone https://github.com/ActiveTriples/linked-data-fragments.git
+cd linked-data-fragments
+bundle install --quiet
+rails s -p 3001
+
+echo "Generating plm-demo ${HOME}/plm-demo"
+cd
+git clone https://github.com/scande3/plm-demo.git
+cd plm-demo
+bundle install --quiet
+rake db:migrate
+rake ldfjetty:install
+rake ldfjetty:start
+
+cp config/database.yml.sample config/database.yml
+cp config/blacklight.yml.sample config/blacklight.yml
+cp config/secret.yml.sample config/secret.yml
+cp config/geomash.yml.sample config/geomash.yml
+rails s -p 3000 -b 0.0.0.0
+
+DOWNLOAD_URL="ftp://nlmpubs.nlm.nih.gov/online/mesh/2017/mesh2017.nt"
+curl $DOWNLOAD_URL -o mesh2017.nt
+curl -H 'Content-Type: text/turtle' --upload-file $DOWNLOAD_DIR/mesh2017.nt -X POST "http://localhost:8988/blazegraph/sparql?context-uri=ftp://nlmpubs.nlm.nih.gov/online/mesh/2017/mesh2017.nt"
+
+```
+
 
 ## Gem References
 
@@ -101,3 +131,11 @@ Coming a couple of hours.
 ## Final Mentions
 
 Feel free to use any ideas or concepts from this. I don't reserve any right on this code.
+
+I had plans to expose the records a Turtle, NTriples, and JSONLD but didn't get to that. Beyond just turning records
+into something that those writing parsers for the Linked Data world might understand, it would be nice to expose the
+MeSH mappings. Researches would more easily be able to programmatically bring in data from other sources that references
+the same concepts.
+
+For unit testing, see the commit from Linked Data Fragments. I may add unit tests to this if I have spare time during
+the day but wasn't able to get to that.
